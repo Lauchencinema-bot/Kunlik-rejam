@@ -3,8 +3,12 @@ from pathlib import Path
 import os
 
 os.chdir(Path(__file__).parent)
-server = ThreadingHTTPServer(("127.0.0.1", 8000), SimpleHTTPRequestHandler)
-print("Ish Vaqtim serveri ishga tushdi:")
-print("http://127.0.0.1:8000")
-print("To'xtatish: Ctrl+C")
+
+port = int(os.environ.get("PORT", 8000))
+
+server = ThreadingHTTPServer(("0.0.0.0", port), SimpleHTTPRequestHandler)
+
+print("Kunlik-rejam serveri ishga tushdi")
+print(f"Port: {port}")
+
 server.serve_forever()
